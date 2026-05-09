@@ -6,3 +6,4 @@ __pycache__/
 keypop.egg-info/
 keypop/__pycache__/
 apikey.egg-info/
+dist/
