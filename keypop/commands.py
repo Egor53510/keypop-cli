@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from keypop.storage import add_key, get_key, list_keys as get_list_keys, remove_key, export, update_key
 

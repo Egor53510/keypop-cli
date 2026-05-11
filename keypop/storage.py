@@ -85,17 +85,5 @@ def update_key(name: str, new_key: str):
     save_keys(keys=keys)
     return True
 
-def update_key(name: str, new_key: str) -> bool:
-    """
-    Обновляет ключ.
-    Возвращает True если обновлён, False если не найден.
-    """
-    keys = load_keys()
-    if name not in keys:
-        return False
-    keys[name] = new_key
-    save_keys(keys=keys)
-    return True
-
 def export() -> dict:
     return load_keys()

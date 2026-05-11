@@ -22,9 +22,6 @@ def main():
     update_parser.add_argument("name", nargs="?", help="Key name to update")
     update_parser.add_argument("key", nargs="?", help="New key value")
 
-    #list
-    list_parser = subparsers.add_parser("list", help="List all stored keys", description="List all stored API keys")
-
     #remove
     remove_parser = subparsers.add_parser("remove", help="Remove a stored key", description="Remove a stored key by name")
     remove_parser.add_argument("name", help="Key name to remove")
