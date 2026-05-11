@@ -1,5 +1,10 @@
 # keypop
 
+[![PyPI version](https://img.shields.io/pypi/v/keypop?color=blue)](https://pypi.org/project/keypop/)
+[![Python versions](https://img.shields.io/pypi/pyversions/keypop?color=blue)](https://pypi.org/project/keypop/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Downloads](https://pepy.tech/badge/keypop/month)](https://pepy.tech/project/keypop)
+
 Simple CLI tool for storing and managing API keys securely.
 
 ## Installation
