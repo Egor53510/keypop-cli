@@ -5,7 +5,7 @@ description = "Simple CLI tool for storing and managing API keys"
 readme = "README.md"
 authors = [{name = "Egordudov", email = "egordudov@example.com"}]
 license = "MIT"
-requires-python = ">=3.8"
+requires-python = ">3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
