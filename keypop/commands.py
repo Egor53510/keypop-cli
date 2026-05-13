@@ -1,5 +1,6 @@
 from pathlib import Path
-from keypop.storage import add_key, get_key, list_keys as get_list_keys, remove_key, export, update_key
+from keypop.storage import add_key, get_key_cli, list_keys as get_list_keys, remove_key, export, update_key
+from keypop.ui.ui import success, error
 
 def _mask(key: str) -> str:
     if len(key) <= 4:
@@ -18,25 +19,25 @@ def add(name: str | None = None, key: str | None = None):
     if not key:
         key = input("Input key: ").strip()
 
-    success = add_key(name=name, key=key)
+    successed = add_key(name=name, key=key)
 
-    if not success:
-        print(f"Key '{name}' already exists")
+    if not successed:
+        error(f"Key '{name}' already exists") 
         confirm = input("Overwrite? (y/n): ").lower().strip()
 
         if confirm != "y":
-            print("Canceled")
+            success("Canceled")
             return
         
         add_key(name=name, key=key, overwrite=True)
 
-    print(f"✓ Key '{name}' added")
+    success(f"Key '{name}' added")
 
 def get(name: str, unmasked: bool = False, to_env: str | None = None):
-    key = get_key(name=name)
+    key = get_key_cli(name=name)
 
     if not key:
-        print("Key not found")
+        error("Key not found")
         return
     
     if to_env:
@@ -45,7 +46,7 @@ def get(name: str, unmasked: bool = False, to_env: str | None = None):
 
         with open(path, mode, encoding="utf-8") as f:
             f.write(f"{name}={key}")
-        print(f"✓ Written to {to_env}")    
+        success(f"Written to {to_env}")    
     if unmasked:
         print(f"{name} = {key}")
     else:
@@ -55,7 +56,7 @@ def list_keys():
     keys = get_list_keys()
 
     if not keys:
-        print("No keys")
+        error("No keys")
         return
     
     print("\nNAME       KEY")
@@ -67,15 +68,15 @@ def list_keys():
 def remove(name: str):
     confirm = input(f"Delete '{name}' key ? (y/n): ").lower().strip()
     if confirm != 'y':
-        print("Cancelled")
+        success("Cancelled")
         return
 
-    success = remove_key(name=name)
+    successed = remove_key(name=name)
 
-    if success:
-        print(f"✓ Removed: {name}")
+    if successed:
+        success(f"Removed: {name}")
     else:
-        print("Key not found")
+        error("Key not found")
 
 def update(name: str | None = None, key: str | None = None):
     """
@@ -85,16 +86,16 @@ def update(name: str | None = None, key: str | None = None):
     if not name:
         name = input("Name of key to update: ").strip()
 
-    current = get_key(name)
+    current = get_key_cli(name)
     if not current:
-        print(f"Key '{name}' not found")
+        error(f"Key '{name}' not found")
         confirm = input("Create new key? (y/n): ").lower().strip()
         if confirm != "y":
-            print("Canceled")
+            success("Canceled")
             return
         key = key or input("Input new key: ").strip()
         add_key(name=name, key=key)
-        print(f"✓ Key '{name}' created")
+        success(f"Key '{name}' created")
         return
 
     if not key:
@@ -102,11 +103,11 @@ def update(name: str | None = None, key: str | None = None):
 
     confirm = input(f"Update '{name}'? (y/n): ").lower().strip()
     if confirm != "y":
-        print("Canceled")
+        success("Canceled")
         return
 
     update_key(name=name, new_key=key)
-    print(f"✓ Key '{name}' updated")
+    success(f"Key '{name}' updated")
 
 def export_all(env_file: str):
     keys = export()
@@ -118,7 +119,7 @@ def export_all(env_file: str):
         for name, key in keys.items():
             f.write(f"{name}={key}\n")
 
-    print("✓ Exported to {env_file}")
+    success("Exported to {env_file}")
 
 
 def version():

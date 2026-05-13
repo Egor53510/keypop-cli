@@ -37,7 +37,7 @@ def save_keys(keys: dict) -> None:
         "keys": keys
     })
 
-def get_key(name: str) -> str | None:
+def get_key_cli(name: str) -> str | None:
     """
     Получает ключ по имени
     """

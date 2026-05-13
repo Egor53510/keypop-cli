@@ -180,6 +180,21 @@ Output: `keypop CLI v0.1.0`
 
 ---
 
+## Python Library
+Install:
+```bash
+pip install keypop
+```
+Usage:
+
+import keypop
+
+# Get single key
+api_key = keypop.get_key("openai")
+# Get all keys as dict
+keys = keypop.all_keys()
+
+
 ## Configuration
 
 - **Storage location**: `~/.config/keypop/keys.json`
