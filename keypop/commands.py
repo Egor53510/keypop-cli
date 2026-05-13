@@ -123,4 +123,4 @@ def export_all(env_file: str):
 
 
 def version():
-    print("keypop CLI v0.1.0")
+    print("keypop CLI v0.2.0")

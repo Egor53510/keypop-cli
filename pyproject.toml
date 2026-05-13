@@ -1,6 +1,6 @@
 [project]
 name = "keypop"
-version = "0.1.1"
+version = "0.2.0"
 description = "Simple CLI tool for storing and managing API keys"
 readme = "README.md"
 authors = [{name = "Egordudov", email = "egordudov@example.com"}]
