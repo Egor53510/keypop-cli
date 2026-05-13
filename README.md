@@ -9,10 +9,9 @@ Simple CLI tool and Python library for storing and managing API keys securely.
 
 ## Features
 
-- **Secure** — store keys in OS keychain
 - **CLI** — easy commands: `keypop add openai sk-xxx`
 - **Python Library** — use in scripts: `import keypop; keypop.get_key("openai")`
-- **Import/Export** — migrate from .env files
+- **Export** — migrate to .env files
 
 ## Installation
 
@@ -30,32 +29,50 @@ pip install keypop
 
 ## Quick Start
 
-### CLI
+## CLI
 
-# Add a key
+#### Add a key
+
+```bash
 keypop add openai sk-xxx
+```
 
-# Get a key
+#### Get a key
+
+```bash
 keypop get openai
+```
 
-# List all keys
+#### List all keys
+
+```bash
 keypop list
+```
 
-# Export to .env
+#### Export to .env
+
+```bash
 keypop export .env
+```
 
-# Update a key
+#### Update a key
+
+```bash
 keypop update openai sk-new-key
+```
 
-# Remove a key
+#### Remove a key
+
+```bash
 keypop remove openai
+```
 
-### Python Library
+## Python Library
 
 ```bash
 pip install keypop
 ```
-
+```python
 import keypop
 
 # Get single key
@@ -63,7 +80,7 @@ api_key = keypop.get_key("openai")
 
 # Get all keys as dict
 keys = keypop.all_keys()
-
+```
 ---
 
 ### CLI Commands
@@ -71,15 +88,19 @@ keys = keypop.all_keys()
 add
 
 Add a new API key.
+```bash
 keypop add <name> <key>   # Non-interactive
 keypop add               # Interactive mode
+```
 
 ---
 
 get
 
 Get a stored API key.
+```bash
 keypop get <name> [--unmasked] [--to-env <file>]
+```
 Options:
 - --unmasked — show full key
 - --to-env <file> — write to .env file
@@ -89,35 +110,45 @@ Options:
 list
 
 List all stored keys.
+```bash
 keypop list
+```
 
 ---
 
 update
 
 Update an existing key.
+```bash
 keypop update <name> [new_key]
+```
 
 ---
 
 remove
 
 Remove a stored key.
+```bash
 keypop remove <name>
+```
 
 ---
 
 export
 
 Export all keys to .env file.
+```bash
 keypop export [file]
+```
 
 ---
 
 version
 
 Show version.
+```bash
 keypop --version
+```
 
 ---
 
@@ -130,8 +161,11 @@ keypop --version
 Security
 
 Prevent keys from saving in shell history
+
 Add to ~/.zshrc or ~/.bashrc:
+
 export HISTIGNORE="*keypop*"
+
 Then run: source ~/.zshrc
 
 ---
